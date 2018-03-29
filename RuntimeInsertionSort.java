@@ -6,18 +6,21 @@ import java.util.regex.*;
 
 public class Solution {
 
-    static int runningTime(int[] arr) {
+    static int runningTime(int[] A){
         int count=0;
-        for(int i=1;i<arr.length;i++){
-            for(int j=0;j<i;j++){
-                if(arr[j]>arr[i]){
-                    int temp=arr[j];
-                    arr[j]=arr[i];
-                    arr[i]=temp;
-                    count++;
-                }                
+        for(int i = 1; i < A.length; i++){
+            int value = A[i];
+            int j = i - 1;
+            while(j >= 0 && A[j] > value){
+                int temp=A[j+1];
+                A[j + 1] = A[j];
+                A[j]=temp;
+                j = j - 1;
+                count++;
             }
+            A[j + 1] = value;
         }
+
         return count;
     }
 
